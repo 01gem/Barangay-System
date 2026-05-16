@@ -49,7 +49,7 @@
     </div>
     <div class="hero-content">
       <div class="hero-pill"><i class="fa-solid fa-map-pin"></i> Barangay Sampaguita, Tagana-an, Surigao del Norte</div>
-      <h1>Barangay Sampaguita,<br /><em>Digitally Connected.</em></h1>
+      <h1>Barangay Sampaguita,<br /><em>Digitally Connected All the Time.</em></h1>
       <p class="hero-sub">Access barangay services, request official documents, track complaints, and discover verified local businesses — all from one secure platform.</p>
       <div class="hero-ctas">
         <a href="pages/login.php" class="btn-hero-primary"><i class="fa-solid fa-right-to-bracket"></i> Resident Log In</a>
