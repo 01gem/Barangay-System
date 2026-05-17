@@ -45,7 +45,9 @@ CREATE TABLE `barangay_officials` (
 --
 
 INSERT INTO `barangay_officials` (`id`, `fname`, `lname`, `address`, `contact`, `email`, `password`) VALUES
-(1, 'Ana', 'Reyes', 'Barangay Hall, Sampaguita', '09170000003', 'official1@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+(1, 'Ana', 'Reyes', 'Barangay Hall, Sampaguita', '09170000003', 'official1@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+(2, 'Carlos', 'Mendoza', 'Barangay Hall, Sampaguita', '09170000004', 'official2@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+(3, 'Rosa', 'Flores', 'Barangay Hall, Sampaguita', '09170000005', 'official3@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
 
 -- --------------------------------------------------------
 
@@ -71,7 +73,10 @@ CREATE TABLE `complaints` (
 
 INSERT INTO `complaints` (`id`, `reference_no`, `resident_name`, `category`, `location_text`, `description`, `date_filed`, `status`, `official_note`) VALUES
 (1, 'COMP-20260516-0001', 'Juan Dela Cruz', 'Noise', 'Purok 1, Sampaguita', 'Loud music late at night.', '2026-05-15 20:30', 'open', ''),
-(2, 'COMP-20260516-0002', 'Maria Santos', 'Parking', 'Purok 2, Sampaguita', 'Vehicle blocking driveway.', '2026-05-14 08:15', 'resolved', 'Resolved during barangay mediation.');
+(2, 'COMP-20260516-0002', 'Maria Santos', 'Parking', 'Purok 2, Sampaguita', 'Vehicle blocking driveway.', '2026-05-14 08:15', 'resolved', 'Resolved during barangay mediation.'),
+(3, 'COMP-20260517-0003', 'Antonio Castillo', 'Street Maintenance', 'Purok 3, Sampaguita', 'Potholes on main road need repair.', '2026-05-16 14:45', 'open', ''),
+(4, 'COMP-20260517-0004', 'Elena Morales', 'Stray Animals', 'Purok 4, Sampaguita', 'Pack of stray dogs roaming neighborhood.', '2026-05-15 09:20', 'in_progress', 'Animal control contacted.'),
+(5, 'COMP-20260517-0005', 'Roberto Torres', 'Water Supply', 'Purok 1, Sampaguita', 'No water for 3 days.', '2026-05-16 17:30', 'resolved', 'Water pressure restored successfully.');
 
 -- --------------------------------------------------------
 
@@ -97,7 +102,10 @@ CREATE TABLE `document_requests` (
 
 INSERT INTO `document_requests` (`id`, `reference_no`, `resident_id`, `resident_name`, `resident_email`, `document_type`, `purpose`, `date_requested`, `status`) VALUES
 (1, 'DOC-20260516-0001', 1, 'Juan Dela Cruz', 'resident1@example.com', 'Barangay Clearance', 'Employment', '2026-05-16 09:05', 'pending'),
-(2, 'DOC-20260516-0002', 2, 'Maria Santos', 'resident2@example.com', 'Certificate of Residency', 'School', '2026-05-16 09:10', 'ready');
+(2, 'DOC-20260516-0002', 2, 'Maria Santos', 'resident2@example.com', 'Certificate of Residency', 'School', '2026-05-16 09:10', 'ready'),
+(3, 'DOC-20260517-0003', 3, 'Pedro Gonzales', 'resident3@example.com', 'Barangay Clearance', 'Travel', '2026-05-17 08:30', 'pending'),
+(4, 'DOC-20260517-0004', 4, 'Lucia Reyes', 'resident4@example.com', 'Certificate of Low Income', 'Scholarship', '2026-05-16 11:45', 'ready'),
+(5, 'DOC-20260517-0005', 5, 'Francisco Hernandez', 'resident5@example.com', 'Residency Certification', 'Business Permit', '2026-05-15 14:20', 'processing');
 
 -- --------------------------------------------------------
 
@@ -119,7 +127,11 @@ CREATE TABLE `notifications` (
 
 INSERT INTO `notifications` (`id`, `title`, `body`, `is_read`, `created_at`) VALUES
 (1, 'System Ready', 'Your account has been created successfully.', 1, '2026-05-16 09:00'),
-(2, 'Document Update', 'Your document request DOC-20260516-0002 is ready for pickup.', 0, '2026-05-16 09:20');
+(2, 'Document Update', 'Your document request DOC-20260516-0002 is ready for pickup.', 0, '2026-05-16 09:20'),
+(3, 'Barangay Announcement', 'Barangay fiesta celebration is scheduled for June 15, 2026.', 0, '2026-05-17 07:15'),
+(4, 'Complaint Status', 'Your complaint COMP-20260516-0001 has been noted and assigned to officials.', 1, '2026-05-15 21:00'),
+(5, 'Maintenance Notice', 'Road maintenance activities in Purok 3 scheduled for May 20-22, 2026.', 0, '2026-05-17 08:45'),
+(6, 'Document Ready', 'Your document request DOC-20260517-0004 is now ready for pickup.', 0, '2026-05-17 09:30');
 
 -- --------------------------------------------------------
 
@@ -143,7 +155,13 @@ CREATE TABLE `residents` (
 
 INSERT INTO `residents` (`id`, `fname`, `lname`, `address`, `contact`, `email`, `password`) VALUES
 (1, 'Juan', 'Dela Cruz', 'Blk 1 Lot 2, Sampaguita', '09170000001', 'resident1@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
-(2, 'Maria', 'Santos', 'Purok 2, Sampaguita', '09170000002', 'resident2@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+(2, 'Maria', 'Santos', 'Purok 2, Sampaguita', '09170000002', 'resident2@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+(3, 'Pedro', 'Gonzales', 'Blk 3 Lot 5, Sampaguita', '09170000006', 'resident3@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+(4, 'Lucia', 'Reyes', 'Purok 4, Sampaguita', '09170000007', 'resident4@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+(5, 'Francisco', 'Hernandez', 'Blk 2 Lot 8, Sampaguita', '09170000008', 'resident5@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+(6, 'Angela', 'Flores', 'Purok 1, Sampaguita', '09170000009', 'resident6@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+(7, 'Diego', 'Moreno', 'Blk 4 Lot 1, Sampaguita', '09170000010', 'resident7@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+(8, 'Isabel', 'Lopez', 'Purok 3, Sampaguita', '09170000011', 'resident8@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
 
 --
 -- Indexes for dumped tables
@@ -189,31 +207,31 @@ ALTER TABLE `residents`
 -- AUTO_INCREMENT for table `barangay_officials`
 --
 ALTER TABLE `barangay_officials`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `complaints`
 --
 ALTER TABLE `complaints`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `document_requests`
 --
 ALTER TABLE `document_requests`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `residents`
 --
 ALTER TABLE `residents`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
