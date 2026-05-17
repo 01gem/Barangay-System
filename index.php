@@ -17,7 +17,7 @@
         <div class="brand-icon"><i class="fa-solid fa-seedling"></i></div>
         <div>
           <span class="brand-name">BarangayLink</span>
-          <span class="brand-loc">Brgy. Sampaguita, Tagana-an, SDN</span>
+          <span class="brand-loc">Brgy. Sampaguita</span>
         </div>
       </a>
       <div class="nav-links">
@@ -48,7 +48,7 @@
       </svg>
     </div>
     <div class="hero-content">
-      <div class="hero-pill"><i class="fa-solid fa-map-pin"></i> Barangay Sampaguita, Tagana-an, Surigao del Norte</div>
+      <div class="hero-pill"><i class="fa-solid fa-map-pin"></i> Barangay Sampaguita</div>
       <h1>Barangay Sampaguita,<br /><em>Digitally Connected All the Time.</em></h1>
       <p class="hero-sub">Access barangay services, request official documents, track complaints, and discover verified local businesses — all from one secure platform.</p>
       <div class="hero-ctas">
@@ -138,7 +138,7 @@
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
-        <p><i class="fa-solid fa-location-dot"></i> Barangay Sampaguita, Tagana-an, Surigao del Norte</p>
+        <p><i class="fa-solid fa-location-dot"></i> Barangay Sampaguita</p>
         <p><i class="fa-solid fa-envelope"></i> contact@example.com</p>
         <p><i class="fa-solid fa-phone"></i> (086) 000-0000</p>
       </div>

@@ -126,7 +126,7 @@ function e($value) {
           <div class="brand-icon"><i class="fa-solid fa-seedling"></i></div>
           <div>
             <span class="brand-name">BarangayLink</span>
-            <span class="brand-loc">Brgy. Sampaguita, Tagana-an, SDN</span>
+            <span class="brand-loc">Brgy. Sampaguita</span>
           </div>
         </a>
         <div class="auth-left-content">
@@ -138,7 +138,7 @@ function e($value) {
             <section class="al-check-section">
               <h2 class="al-check-heading">Welcome</h2>
               <label class="al-check-row"><input type="checkbox" checked disabled /><span>Good day — your barangay services are one secure login away.</span></label>
-              <label class="al-check-row"><input type="checkbox" checked disabled /><span>Stay connected to Brgy. Sampaguita, Tagana-an, whenever you need us.</span></label>
+              <label class="al-check-row"><input type="checkbox" checked disabled /><span>Stay connected to Brgy. Sampaguita, whenever you need us.</span></label>
               <label class="al-check-row"><input type="checkbox" checked disabled /><span>We're glad you're here — residents and partners use the same trusted portal.</span></label>
             </section>
             <section class="al-check-section">
