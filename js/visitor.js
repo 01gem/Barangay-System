@@ -2,17 +2,61 @@
    BARANGAYLINK — VISITOR.JS
 ───────────────────────────────────────── */
 
-// ── MOCK DATA ────────────────────────────
-const ANNOUNCEMENTS = [];
+let ANNOUNCEMENTS = [];
+let SERVICES = [];
+let FILTERS = ['All', 'Food', 'Retail', 'Services'];
 
 // Get announcements
 function getAllAnnouncements() {
   return ANNOUNCEMENTS;
 }
 
-const SERVICES = [];
+// Fetch dashboard statistics
+async function loadStats() {
+  try {
+    const response = await fetch('api/get-stats.php');
+    const result = await response.json();
+    if (result.success) {
+      const { residents, services, fulfillment_rate, avg_response_time } = result.data;
+      document.querySelectorAll('.stat-item .sn').forEach((el, idx) => {
+        const statData = [residents, services, fulfillment_rate + '%', avg_response_time + ' min'];
+        el.textContent = statData[idx];
+      });
+    }
+  } catch (error) {
+    console.error('Error loading stats:', error);
+  }
+}
 
-const FILTERS = ['All', 'Food', 'Retail', 'Services'];
+// Fetch announcements data
+async function loadAnnouncements() {
+  try {
+    const response = await fetch('api/get-announcements.php');
+    const result = await response.json();
+    if (result.success) {
+      ANNOUNCEMENTS = result.data;
+      renderAnnouncements();
+    }
+  } catch (error) {
+    console.error('Error loading announcements:', error);
+  }
+}
+
+// Fetch businesses data
+async function loadBusinesses() {
+  try {
+    const response = await fetch('api/get-businesses.php');
+    const result = await response.json();
+    if (result.success) {
+      SERVICES = result.data.businesses;
+      FILTERS = result.data.filters;
+      initFilters();
+      renderServices('all');
+    }
+  } catch (error) {
+    console.error('Error loading businesses:', error);
+  }
+}
 
 // ── RENDER ANNOUNCEMENTS ──────────────────
 function renderAnnouncements() {
@@ -95,10 +139,10 @@ function initNavLinks() {
 }
 
 // ── INIT ───────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  renderAnnouncements();
-  initFilters();
-  renderServices('all');
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadStats();
+  await loadAnnouncements();
+  await loadBusinesses();
   initNavbar();
   initNavLinks();
 });

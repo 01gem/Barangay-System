@@ -27,6 +27,64 @@ USE `barangay_system`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `announcements`
+--
+
+CREATE TABLE `announcements` (
+  `id` int NOT NULL,
+  `title` varchar(120) NOT NULL,
+  `excerpt` varchar(255) NOT NULL,
+  `category` varchar(50) NOT NULL DEFAULT 'General',
+  `created_at` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `announcements`
+--
+
+INSERT INTO `announcements` (`id`, `title`, `excerpt`, `category`, `created_at`) VALUES
+(1, 'Barangay Fiesta 2026', 'Join us on June 15, 2026 for the Barangay Fiesta celebration with activities, food, and entertainment for the whole family.', 'Event', '2026-05-17 07:15'),
+(2, 'Road Maintenance Schedule', 'Road maintenance activities in Purok 3 are scheduled for May 20-22, 2026. Please avoid the area during these dates.', 'Maintenance', '2026-05-17 08:45'),
+(3, 'Water System Upgrade', 'Barangay water system upgrade project begins on May 25, 2026. Residents may experience water interruptions during the upgrade.', 'Maintenance', '2026-05-16 10:30'),
+(4, 'Community Health Drive', 'Free medical and dental services will be provided on June 1, 2026 at the Barangay Hall for all residents.', 'Health', '2026-05-15 14:00'),
+(5, 'New Online Services Available', 'Residents can now apply for barangay clearances and certificates online through the BarangayLink portal.', 'Service', '2026-05-14 09:20'),
+(6, 'Scholarship Application Opens', 'Educational scholarship applications for deserving students are now open. Deadline: June 30, 2026.', 'Education', '2026-05-13 15:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `businesses`
+--
+
+CREATE TABLE `businesses` (
+  `id` int NOT NULL,
+  `name` varchar(120) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `address` varchar(150) NOT NULL,
+  `contact` varchar(50) NOT NULL,
+  `rating` decimal(3,1) NOT NULL DEFAULT '5.0',
+  `reviews_count` int DEFAULT '0',
+  `is_verified` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `businesses`
+--
+
+INSERT INTO `businesses` (`id`, `name`, `category`, `description`, `address`, `contact`, `rating`, `reviews_count`, `is_verified`) VALUES
+(1, 'Juan\'s Restaurant', 'Food', 'Authentic Filipino cuisine with fresh local ingredients. Open 10 AM - 9 PM daily.', 'Purok 1, Sampaguita', '09171234567', 4.8, 24, 1),
+(2, 'Maria\'s Sari-Sari Store', 'Retail', 'One-stop shop for groceries, snacks, and household items. Affordable prices and friendly service.', 'Purok 2, Sampaguita', '09172345678', 4.5, 18, 1),
+(3, 'Pedro\'s Barbershop', 'Services', 'Professional haircuts, grooming, and styling for men. Walk-ins welcome.', 'Blk 3 Lot 5, Sampaguita', '09173456789', 4.7, 32, 1),
+(4, 'Lucia\'s Bakery', 'Food', 'Fresh bread, pastries, and cakes baked daily. Catering services available.', 'Purok 4, Sampaguita', '09174567890', 4.9, 41, 1),
+(5, 'Tech Service Center', 'Services', 'Mobile phone repairs, charging, and accessories. Quick turnaround time.', 'Blk 1 Lot 2, Sampaguita', '09175678901', 4.6, 28, 1),
+(6, 'Angela\'s Clothing Boutique', 'Retail', 'Latest fashion trends and clothing for men, women, and kids. Affordable prices.', 'Purok 1, Sampaguita', '09176789012', 4.4, 15, 1),
+(7, 'Diego\'s Hardware Store', 'Retail', 'Complete range of hardware tools and building materials for home improvement projects.', 'Blk 4 Lot 1, Sampaguita', '09177890123', 4.5, 22, 1),
+(8, 'Beauty Salon Sampaguita', 'Services', 'Hair care, facial treatments, and wellness services for women. Relaxing environment.', 'Purok 3, Sampaguita', '09178901234', 4.8, 35, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `barangay_officials`
 --
 
@@ -194,6 +252,18 @@ ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `announcements`
+--
+ALTER TABLE `announcements`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `businesses`
+--
+ALTER TABLE `businesses`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `residents`
 --
 ALTER TABLE `residents`
@@ -226,6 +296,18 @@ ALTER TABLE `document_requests`
 --
 ALTER TABLE `notifications`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `announcements`
+--
+ALTER TABLE `announcements`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `businesses`
+--
+ALTER TABLE `businesses`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `residents`
