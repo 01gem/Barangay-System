@@ -387,17 +387,26 @@ async function loadAnnouncements() {
   try {
     const response = await fetch(`${API_BASE}/get-announcements.php`);
     const result = await response.json();
-    if (result.success) {
-      ANNOUNCEMENTS_DATA = result.data.map(a => ({
-        id: a.id,
-        cat: a.cat,
-        icon: a.catLabel.charAt(0) + (a.catLabel.includes('Event') ? '📢' : a.catLabel.includes('Maintenance') ? '🔧' : a.catLabel.includes('Health') ? '⚕️' : a.catLabel.includes('Service') ? '💻' : '📋'),
-        title: a.title,
-        date: a.date,
-        author: 'Barangay Official',
-        sms: false
-      }));
-      renderAnnouncementsAdmin();
+    if (result.success && result.data && Array.isArray(result.data)) {
+      ANNOUNCEMENTS_DATA = result.data.map(a => {
+        const icons = {
+          'event': '📢',
+          'maintenance': '🔧',
+          'health': '⚕️',
+          'service': '💻',
+          'education': '🎓',
+          'general': '📋'
+        };
+        return {
+          id: a.id,
+          cat: a.cat,
+          icon: icons[a.cat] || '📋',
+          title: a.title,
+          date: a.date,
+          author: 'Barangay Official',
+          sms: false
+        };
+      });
     }
   } catch (error) {
     console.error('Error loading announcements:', error);
@@ -408,17 +417,16 @@ async function loadServices() {
   try {
     const response = await fetch(`${API_BASE}/get-businesses.php`);
     const result = await response.json();
-    if (result.success) {
+    if (result.success && result.data && Array.isArray(result.data.businesses)) {
       SERVICES_DATA = result.data.businesses.map(s => ({
         id: s.id,
         emoji: s.emoji,
         name: s.name,
-        cat: s.catLabel,
+        cat: s.cat,
         rating: s.rating,
         reviews: s.reviews,
         addr: s.addr
       }));
-      renderServicesAdmin();
     }
   } catch (error) {
     console.error('Error loading services:', error);
