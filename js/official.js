@@ -33,19 +33,19 @@ async function updateSidebarCounts() {
     const response = await fetch(`${API_BASE}/get-counts.php`);
     const result = await response.json();
     if (result.success) {
-      const { residents, pending_requests, pending_complaints, announcements, services } = result.data;
+      const { residents, total_requests, total_complaints, announcements, services } = result.data;
       
       // Update residents badge (always show total)
       const residentsBtn = document.querySelector('[data-tab="residents"] .badge-count');
       if (residentsBtn) residentsBtn.textContent = residents;
       
-      // Update document requests badge (pending/processing count)
+      // Update document requests badge (total count)
       const reqBadge = document.getElementById('reqPendBadge');
-      if (reqBadge) reqBadge.textContent = pending_requests;
+      if (reqBadge) reqBadge.textContent = total_requests;
       
-      // Update complaints badge (open/investigating count)
+      // Update complaints badge (total count)
       const compBadge = document.getElementById('compPendBadge');
-      if (compBadge) compBadge.textContent = pending_complaints;
+      if (compBadge) compBadge.textContent = total_complaints;
       
       // Update announcements in sidebar (total count)
       const annBtn = document.querySelector('[data-tab="announcements"]');
@@ -383,6 +383,48 @@ async function loadComplaints() {
   renderComplaintsAdmin(COMPLAINTS_ADMIN);
 }
 
+async function loadAnnouncements() {
+  try {
+    const response = await fetch(`${API_BASE}/get-announcements.php`);
+    const result = await response.json();
+    if (result.success) {
+      ANNOUNCEMENTS_DATA = result.data.map(a => ({
+        id: a.id,
+        cat: a.cat,
+        icon: a.catLabel.charAt(0) + (a.catLabel.includes('Event') ? '📢' : a.catLabel.includes('Maintenance') ? '🔧' : a.catLabel.includes('Health') ? '⚕️' : a.catLabel.includes('Service') ? '💻' : '📋'),
+        title: a.title,
+        date: a.date,
+        author: 'Barangay Official',
+        sms: false
+      }));
+      renderAnnouncementsAdmin();
+    }
+  } catch (error) {
+    console.error('Error loading announcements:', error);
+  }
+}
+
+async function loadServices() {
+  try {
+    const response = await fetch(`${API_BASE}/get-businesses.php`);
+    const result = await response.json();
+    if (result.success) {
+      SERVICES_DATA = result.data.businesses.map(s => ({
+        id: s.id,
+        emoji: s.emoji,
+        name: s.name,
+        cat: s.catLabel,
+        rating: s.rating,
+        reviews: s.reviews,
+        addr: s.addr
+      }));
+      renderServicesAdmin();
+    }
+  } catch (error) {
+    console.error('Error loading services:', error);
+  }
+}
+
 async function refreshDashboard() {
   renderDashStats();
   renderDashPendingReqs();
@@ -633,13 +675,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initDocRequestsTable();
   initComplaintsAdmin();
   initResidentCreateForm();
-  renderAnnouncementsAdmin();
   initAnnouncementForm();
-  renderServicesAdmin();
   renderAuditLog();
   (async () => {
     try {
-      await Promise.all([loadResidents(), loadRequests(), loadComplaints()]);
+      await Promise.all([loadResidents(), loadRequests(), loadComplaints(), loadAnnouncements(), loadServices()]);
+      renderAnnouncementsAdmin();
+      renderServicesAdmin();
       await refreshDashboard();
       await updateSidebarCounts();
     } catch (err) {

@@ -11,17 +11,17 @@ $stmt->execute();
 $result = $stmt->get_result();
 $residents_count = $result->fetch_assoc()['count'];
 
-// Count pending/processing document requests
-$stmt = $db->prepare('SELECT COUNT(*) as count FROM document_requests WHERE status IN ("pending", "processing")');
+// Count ALL document requests (total)
+$stmt = $db->prepare('SELECT COUNT(*) as count FROM document_requests');
 $stmt->execute();
 $result = $stmt->get_result();
-$pending_requests_count = $result->fetch_assoc()['count'];
+$total_requests_count = $result->fetch_assoc()['count'];
 
-// Count open/investigating complaints
-$stmt = $db->prepare('SELECT COUNT(*) as count FROM complaints WHERE status IN ("open", "investigating")');
+// Count ALL complaints (total)
+$stmt = $db->prepare('SELECT COUNT(*) as count FROM complaints');
 $stmt->execute();
 $result = $stmt->get_result();
-$pending_complaints_count = $result->fetch_assoc()['count'];
+$total_complaints_count = $result->fetch_assoc()['count'];
 
 // Count announcements
 $stmt = $db->prepare('SELECT COUNT(*) as count FROM announcements');
@@ -39,8 +39,8 @@ echo json_encode([
   'success' => true,
   'data' => [
     'residents' => (int)$residents_count,
-    'pending_requests' => (int)$pending_requests_count,
-    'pending_complaints' => (int)$pending_complaints_count,
+    'total_requests' => (int)$total_requests_count,
+    'total_complaints' => (int)$total_complaints_count,
     'announcements' => (int)$announcements_count,
     'services' => (int)$services_count
   ]
