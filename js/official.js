@@ -27,6 +27,53 @@ function initNav() {
   });
 }
 
+// ── LOAD & UPDATE SIDEBAR COUNTS ───────────
+async function updateSidebarCounts() {
+  try {
+    const response = await fetch(`${API_BASE}/get-counts.php`);
+    const result = await response.json();
+    if (result.success) {
+      const { residents, pending_requests, pending_complaints, announcements, services } = result.data;
+      
+      // Update residents badge (always show total)
+      const residentsBtn = document.querySelector('[data-tab="residents"] .badge-count');
+      if (residentsBtn) residentsBtn.textContent = residents;
+      
+      // Update document requests badge (pending/processing count)
+      const reqBadge = document.getElementById('reqPendBadge');
+      if (reqBadge) reqBadge.textContent = pending_requests;
+      
+      // Update complaints badge (open/investigating count)
+      const compBadge = document.getElementById('compPendBadge');
+      if (compBadge) compBadge.textContent = pending_complaints;
+      
+      // Update announcements in sidebar (total count)
+      const annBtn = document.querySelector('[data-tab="announcements"]');
+      if (annBtn && !annBtn.querySelector('.badge-count')) {
+        const badge = document.createElement('span');
+        badge.className = 'badge-count';
+        badge.textContent = announcements;
+        annBtn.appendChild(badge);
+      } else if (annBtn) {
+        annBtn.querySelector('.badge-count').textContent = announcements;
+      }
+      
+      // Update local services in sidebar (total count)
+      const svcBtn = document.querySelector('[data-tab="services"]');
+      if (svcBtn && !svcBtn.querySelector('.badge-count')) {
+        const badge = document.createElement('span');
+        badge.className = 'badge-count';
+        badge.textContent = services;
+        svcBtn.appendChild(badge);
+      } else if (svcBtn) {
+        svcBtn.querySelector('.badge-count').textContent = services;
+      }
+    }
+  } catch (error) {
+    console.error('Error loading sidebar counts:', error);
+  }
+}
+
 // ── DASHBOARD ─────────────────────────────
 function renderDashStats() {
   const el = document.getElementById('dashStats');
@@ -343,6 +390,7 @@ async function refreshDashboard() {
   renderDashActivity();
   document.getElementById('reqPendBadge').textContent = DOC_REQUESTS.filter(x => x.status === 'pending').length;
   document.getElementById('compPendBadge').textContent = COMPLAINTS_ADMIN.filter(x => x.status !== 'resolved').length;
+  await updateSidebarCounts();
 }
 
 function initResidentCreateForm() {
@@ -593,6 +641,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       await Promise.all([loadResidents(), loadRequests(), loadComplaints()]);
       await refreshDashboard();
+      await updateSidebarCounts();
     } catch (err) {
       showToastAdmin('Data Load Failed', err.message);
     }

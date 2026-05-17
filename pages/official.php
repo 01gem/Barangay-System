@@ -35,8 +35,8 @@
       <button class="snav-item" data-tab="requests"><i class="fa-solid fa-file-lines"></i> Document Requests <span class="badge-count pending-badge" id="reqPendBadge">0</span></button>
       <button class="snav-item" data-tab="complaints"><i class="fa-solid fa-triangle-exclamation"></i> Complaints <span class="badge-count pending-badge" id="compPendBadge">0</span></button>
       <div class="nav-group-label">Community</div>
-      <button class="snav-item" data-tab="announcements"><i class="fa-solid fa-bullhorn"></i> Announcements</button>
-      <button class="snav-item" data-tab="services"><i class="fa-solid fa-store"></i> Local Services</button>
+      <button class="snav-item" data-tab="announcements"><i class="fa-solid fa-bullhorn"></i> Announcements <span class="badge-count">0</span></button>
+      <button class="snav-item" data-tab="services"><i class="fa-solid fa-store"></i> Local Services <span class="badge-count">0</span></button>
       <div class="nav-group-label">System</div>
       <button class="snav-item" data-tab="auditlog"><i class="fa-solid fa-scroll"></i> Audit Log</button>
     </nav>
