@@ -60,9 +60,10 @@ button { font-family: 'Jost', sans-serif; }
 .brand-icon {
   width: 36px; height: 36px;
   background: linear-gradient(135deg, var(--amber), var(--gold));
-  border-radius: 8px;
+  border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 16px; color: white; flex-shrink: 0;
+  box-shadow: inset 0 8px 12px rgba(0,0,0,0.15);
 }
 .brand-name { display: block; font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 700; color: white; }
 .brand-loc { display: block; font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 0.3px; }
@@ -77,6 +78,7 @@ button { font-family: 'Jost', sans-serif; }
   background: linear-gradient(135deg, var(--teal), #0F766E);
   display: flex; align-items: center; justify-content: center;
   font-size: 13px; font-weight: 700; color: white; flex-shrink: 0;
+  box-shadow: inset 0 8px 12px rgba(0,0,0,0.15);
 }
 .user-name { display: block; font-size: 13px; font-weight: 600; color: white; }
 .user-role {
@@ -139,6 +141,7 @@ button { font-family: 'Jost', sans-serif; }
   background: linear-gradient(135deg, var(--teal), #0F766E);
   display: flex; align-items: center; justify-content: center;
   font-size: 12px; font-weight: 700; color: white;
+  box-shadow: inset 0 6px 10px rgba(0,0,0,0.15);
 }
 .logout-btn { padding: 6px 10px; font-size: 14px; color: var(--text-3); border: 1.5px solid var(--border); border-radius: 7px; transition: all var(--t); }
 .logout-btn:hover { color: var(--danger); border-color: var(--danger); }
@@ -158,7 +161,7 @@ button { font-family: 'Jost', sans-serif; }
   transition: transform var(--t);
 }
 .stat-card:hover { transform: translateY(-2px); }
-.sc-ico { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0; }
+.sc-ico { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0; box-shadow: inset 0 10px 16px rgba(0,0,0,0.12); }
 .sc-data .sc-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--text); line-height: 1; }
 .sc-data .sc-lbl { font-size: 11px; font-weight: 600; color: var(--text-3); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
 .sc-data .sc-trend { font-size: 11px; color: var(--success); font-weight: 600; margin-top: 3px; }
@@ -261,7 +264,7 @@ button { font-family: 'Jost', sans-serif; }
   padding: 16px 0; border-bottom: 1px solid var(--border);
 }
 .ann-admin-item:last-child { border-bottom: none; }
-.aai-cat { flex-shrink: 0; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.aai-cat { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: inset 0 8px 12px rgba(0,0,0,0.12); }
 .aai-body { flex: 1; }
 .aai-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
 .aai-meta { font-size: 11px; color: var(--text-3); display: flex; gap: 12px; flex-wrap: wrap; }
@@ -332,7 +335,7 @@ textarea.form-input { resize: vertical; line-height: 1.6; }
 /* ── MINI ROWS ───────────────────────────── */
 .mini-row { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); gap: 12px; }
 .mini-row:last-child { border-bottom: none; }
-.mr-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.mr-icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; box-shadow: inset 0 6px 10px rgba(0,0,0,0.12); }
 .mr-text { flex: 1; }
 .mr-title { font-size: 13px; font-weight: 600; color: var(--text); }
 .mr-sub { font-size: 11px; color: var(--text-3); margin-top: 2px; }
